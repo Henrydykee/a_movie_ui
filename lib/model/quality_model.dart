@@ -5,33 +5,36 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 
 class Quality {
-  final String name;
-   bool  color;
+  final int id;
+  final String quality;
+   bool  isSelected;
 
 
 
    Quality({
-    @required this.name,
-    this.color
+    @required this.quality,
+     this.id,
+    this.isSelected= false
   });
 
 }
 
 List <Quality> qualityData =  [
   Quality(
-    name: '720 p',
-    color: true
+    id: 0,
+    quality: '720 p',
+      isSelected: true
   ),
   Quality(
-    name: '1080 p',
-    color: false
+    id: 1,
+    quality: '1080 p',
   ),
   Quality(
-    name: '1440 p',
-    color: false
+    id: 2,
+    quality: '1440 p',
   ),
   Quality(
-    name: 'HD',
-    color: false
+    id: 3,
+    quality: 'HD',
   ),
 ];

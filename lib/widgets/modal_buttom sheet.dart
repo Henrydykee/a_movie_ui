@@ -9,7 +9,8 @@ modalBottomSheet(BuildContext context) {
 
   bool _isChecked = true;
   String _currText = 'Russian';
-  var border;
+  final bool isSelected = false;
+  var  data = qualityData;
 
   var checkedValue;
   showModalBottomSheet(
@@ -18,9 +19,6 @@ modalBottomSheet(BuildContext context) {
       backgroundColor: Colors.transparent,
       builder: (context) {
         return StatefulBuilder(builder: (BuildContext context, StateSetter setState){
-
-          var  data = qualityData;
-
           return Container(
               height: MediaQuery.of(context).size.height * 0.80,
               decoration: new BoxDecoration(
@@ -82,10 +80,13 @@ modalBottomSheet(BuildContext context) {
                                       child: GestureDetector(
                                         onTap: (){
                                           setState(() {
-                                            data  =  data.map((e) => Quality(
-                                                color: false,
-                                                name: e.name)).toList();
-                                            number.color = !number.color;
+                                            data = qualityData.map((e) {
+                                              return Quality(
+                                                id: index,
+                                                quality: e.quality,
+                                                isSelected: e.id == index
+                                              );
+                                            }).toList();
                                           });
                                         },
                                         child: Container(
@@ -94,10 +95,10 @@ modalBottomSheet(BuildContext context) {
                                               color: MovieColor.Light_Purple,
                                               borderRadius: BorderRadius.circular(18),
                                               border: Border.all(
-                                                  width: 2, color: number.color == true ? MovieColor.Pink : MovieColor.Light_Purple )
+                                                  width: 2, color: number.isSelected ? MovieColor.Pink : MovieColor.Light_Purple )
                                           ),
                                           child: Center(
-                                            child: Text( number.name,style: TextStyle(
+                                            child: Text( number.quality,style: TextStyle(
                                                 fontSize: 18,
                                                 fontWeight: FontWeight.w700,
                                                 color: Colors.white
